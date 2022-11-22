@@ -1,5 +1,5 @@
 html, body{
-    background-color: dodgerblue;
+    background-color: #354259;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgb(255, 255, 255);
 }
@@ -28,11 +28,11 @@ header{
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    border: 5px solid black;
+    background-color: #ECE5C7;
 }
 
 .boxes:hover{
-    background-color: rgb(55, 21, 208);
+    background-color: #CDC2AE;
     content: "X";
     opacity: 0.4;
 }
@@ -60,6 +60,7 @@ button {
     border: black 1px solid;
     padding: 10px;
     font-size: 1.5em;
+    border-radius: 10px;
 }
 
 button:hover {
