@@ -1,7 +1,8 @@
 const boxes = document.querySelectorAll('.boxes');
 const playerX = 'X';
 const playerO = 'O';
-const boardState = Array(boxes.length); boardState.fill('');
+let boardState = Array(boxes.length); 
+boardState.fill('');
 const Strike = document.querySelector('.strike');
 const gameOverArea = document.querySelector('.game-over-area');
 const gameOverText = document.querySelector('.game-over-text');
@@ -9,11 +10,22 @@ const playAgain = document.querySelector('.play-again');
 let endGame = false
 let turn = playerX;
 
+playAgain.addEventListener('click', reset);
 
-function reloads() {
-    document.location.reload()
+function reset() {
+    boardState = Array (boxes.length);
+    boardState.fill('');
+    endGame = false;
+    console.log(boardState);
+    boxes.forEach(boxes => {
+        boxes.innerHTML = '';
+        boxes.style.backgroundColor = '#ECE5C7';
+        turn = playerX;
+        gameOverText.innerHTML = '&nbsp;'
+    })
 }
-playAgain.addEventListener('click', reloads);
+
+
 
 boxes.forEach(boxes => boxes.addEventListener('click', boxeClick));
 boxes.forEach(function (box) {
@@ -66,7 +78,6 @@ function boxeClick(event) {
         boardState[boxNumber - 1] = playerO
         turn = playerX;
     }
-    console.log(turn);
     if (checkWinner() == turn) {
         gameOverText.innerHTML = `${turn} has won`
     }
@@ -80,7 +91,6 @@ function checkWinner() {
         if (boardState[indexes[0]] != '' &&
             boardState[indexes[0]] === boardState[indexes[1]] &&
             boardState[indexes[1]] === boardState[indexes[2]]) {
-            console.log(useClass);
             if (turn == 'X') {
                 gameOverText.innerHTML = `O Has Won`;
                 endGame = true;
@@ -104,7 +114,7 @@ function checkWinner() {
                     column.style.backgroundColor = '#B4FF9F';
                 })
             } else if (useClass === '.colomn-1') {
-                const useClass = document.querySelectorAll('.one, .four, .sevem');
+                const useClass = document.querySelectorAll('.one, .four, .seven');
                 useClass.forEach(column => {
                     column.style.backgroundColor = '#B4FF9F';
                 })
@@ -142,6 +152,4 @@ let checkWinnerCombination = [
     { combo: [2, 5, 8], strikeClass: '.colomn-3' },
     { combo: [0, 4, 8], strikeClass: '.diagnal-1' },
     { combo: [2, 4, 6], strikeClass: '.diagnal-2' },
-]
-
-
+];
