@@ -6,13 +6,32 @@ html, body{
 
 .wrapper {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(3, 100px);
     gap: 10px;
-    width: 340px;
+    width: 670px;
     margin: auto;
-    font-size: 60px;
     cursor: pointer;
+}
+
+.leaderboard {
+    grid-row: 1 / 4;
+    grid-column: 0 / 1;
+    border: 5px solid black;
+    border-radius: 10px;
+    height: 310px;
+    width: 150px;
+    text-align: center;
+    font-size: 20px;
+}
+.userName{
+    margin: auto;
+    grid-column: 5/6;
+    grid-row:1/4;
+    border: 5px solid black;
+    border-radius: 10px;
+    height: 310px;
+    width: 150px;
 }
 
 header{
@@ -29,6 +48,8 @@ header{
     align-items: center;
     border-radius: 10px;
     background-color: #ECE5C7;
+    width: 100px;
+    font-size: 60px;
 }
 
 .boxes:hover{
@@ -38,13 +59,14 @@ header{
 }
 
 .game-over-area {
+    grid-column: 2/3 ;
+    grid-row: 5/6;
     text-align: center;
     border: 5px solid black;
     height: 150px;
     width: 340px;
     margin: auto;
     border-radius: 10px;
-    margin-top: 10px;
 }
 
 h2 {
