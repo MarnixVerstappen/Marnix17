@@ -9,6 +9,7 @@ const gameOverText = document.querySelector('.game-over-text');
 const playAgain = document.querySelector('.play-again');
 let endGame = false
 let turn = playerX;
+i = 0;
 
 playAgain.addEventListener('click', reset);
 
@@ -22,10 +23,10 @@ function reset() {
         boxes.style.backgroundColor = '#ECE5C7';
         turn = playerX;
         gameOverText.innerHTML = '&nbsp;'
+        i = 0;
+        console.log(i);
     })
 }
-
-
 
 boxes.forEach(boxes => boxes.addEventListener('click', boxeClick));
 boxes.forEach(function (box) {
@@ -56,6 +57,12 @@ function setHoverText() {
 }
 
 function boxeClick(event) {
+    i++
+    if (i === 9) {
+        gameOverText.innerHTML = `Draw!`
+    }
+
+    console.log(i)
     if (endGame) {
         return;
     }
@@ -92,10 +99,10 @@ function checkWinner() {
             boardState[indexes[0]] === boardState[indexes[1]] &&
             boardState[indexes[1]] === boardState[indexes[2]]) {
             if (turn == 'X') {
-                gameOverText.innerHTML = `O Has Won`;
+                gameOverText.innerHTML = `O Won!`;
                 endGame = true;
             } else {
-                gameOverText.innerHTML = `X Has Won`;
+                gameOverText.innerHTML = `X Won!`;
                 endGame = true;
             }
             if (useClass === '.row-1') {
