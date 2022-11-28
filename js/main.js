@@ -1,30 +1,30 @@
 const boxes = document.querySelectorAll('.boxes');
+const scoreboardX = document.querySelector('.scoreboard-X')
+const scoreboardO = document.querySelector('.scoreboard-O')
 const playerX = 'X';
 const playerO = 'O';
-let boardState = Array(boxes.length); 
+let boardState = Array(boxes.length);
 boardState.fill('');
 const Strike = document.querySelector('.strike');
 const gameOverArea = document.querySelector('.game-over-area');
 const gameOverText = document.querySelector('.game-over-text');
 const playAgain = document.querySelector('.play-again');
-let endGame = false
+let endGame = false;
 let turn = playerX;
 i = 0;
 
 playAgain.addEventListener('click', reset);
 
 function reset() {
-    boardState = Array (boxes.length);
+    boardState = Array(boxes.length);
     boardState.fill('');
     endGame = false;
-    console.log(boardState);
     boxes.forEach(boxes => {
         boxes.innerHTML = '';
         boxes.style.backgroundColor = '#ECE5C7';
         turn = playerX;
         gameOverText.innerHTML = '&nbsp;'
         i = 0;
-        console.log(i);
     })
 }
 
@@ -57,15 +57,10 @@ function setHoverText() {
 }
 
 function boxeClick(event) {
-    i++
-    if (i === 9) {
-        gameOverText.innerHTML = `Draw!`
-    }
-
-    console.log(i)
     if (endGame) {
         return;
     }
+
     if (gameOverArea.classList.contains('visible')) {
         return;
     }
@@ -74,7 +69,14 @@ function boxeClick(event) {
     if (boxes.innerText != '') {
         return;
     }
-
+    i++
+    if (i === 9) {
+        gameOverText.innerHTML = `Draw!`;
+        const useClass = document.querySelectorAll('.one, .two, .three, .four, .five, .six, .seven, .eight, .nine');
+        useClass.forEach(draw => {
+            draw.style.backgroundColor = '#ff6865';
+        })
+    }
     boxes.classList.add('filled');
     if (turn === playerX) {
         boxes.innerText = playerX
@@ -89,6 +91,7 @@ function boxeClick(event) {
         gameOverText.innerHTML = `${turn} has won`
     }
     checkWinner();
+    AI();
 }
 
 function checkWinner() {
@@ -101,6 +104,7 @@ function checkWinner() {
             if (turn == 'X') {
                 gameOverText.innerHTML = `O Won!`;
                 endGame = true;
+
             } else {
                 gameOverText.innerHTML = `X Won!`;
                 endGame = true;
@@ -130,7 +134,7 @@ function checkWinner() {
                 useClass.forEach(column => {
                     column.style.backgroundColor = '#B4FF9F';
                 })
-            } else if (useClass === '.column-3') {
+            } else if (useClass === '.colomn-3') {
                 const useClass = document.querySelectorAll('.three, .six, .nine');
                 useClass.forEach(column => {
                     column.style.backgroundColor = '#B4FF9F';
@@ -149,6 +153,11 @@ function checkWinner() {
         }
     })
 }
+
+function AI() {
+
+}
+
 
 let checkWinnerCombination = [
     { combo: [0, 1, 2], strikeClass: '.row-1' },
