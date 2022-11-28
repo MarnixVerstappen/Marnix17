@@ -76,7 +76,7 @@ h2 {
 
 }
 
-button {
+.play-again {
     background-color: transparent;
     color: black;
     border: black 1px solid;
@@ -85,7 +85,7 @@ button {
     border-radius: 10px;
 }
 
-button:hover {
+.play-again:hover {
     background-color: transparent;
     color: white;
     border: white 1px solid;
@@ -118,5 +118,5 @@ button:hover {
 
 .input {
     width: 75px;
-    
+
 }

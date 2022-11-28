@@ -11,13 +11,21 @@ const gameOverText = document.querySelector('.game-over-text');
 const wonX = document.querySelector('.wonX');
 const wonO = document.querySelector('.wonO');
 const playAgain = document.querySelector('.play-again');
+const submitBtn = document.querySelector('.submit');
+let inputArea = document.querySelector('.input-area');
+let player = document.querySelector('.player')
 let endGame = false;
 let turn = playerX;
 let X = 0;
 let O = 0;
 let i = 0;
 
+submitBtn.addEventListener('click', submitName);
 playAgain.addEventListener('click', reset);
+
+function submitName() {
+    player.innerHTML = inputArea.value;
+}
 
 function reset() {
     boardState = Array(boxes.length);
