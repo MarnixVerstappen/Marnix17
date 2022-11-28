@@ -8,10 +8,14 @@ boardState.fill('');
 const Strike = document.querySelector('.strike');
 const gameOverArea = document.querySelector('.game-over-area');
 const gameOverText = document.querySelector('.game-over-text');
+const wonX = document.querySelector('.wonX');
+const wonO = document.querySelector('.wonO');
 const playAgain = document.querySelector('.play-again');
 let endGame = false;
 let turn = playerX;
-i = 0;
+let X = 0;
+let O = 0;
+let i = 0;
 
 playAgain.addEventListener('click', reset);
 
@@ -87,9 +91,6 @@ function boxeClick(event) {
         boardState[boxNumber - 1] = playerO
         turn = playerX;
     }
-    if (checkWinner() == turn) {
-        gameOverText.innerHTML = `${turn} has won`
-    }
     checkWinner();
     AI();
 }
@@ -104,10 +105,13 @@ function checkWinner() {
             if (turn == 'X') {
                 gameOverText.innerHTML = `O Won!`;
                 endGame = true;
-
+                O++;
+                wonO.innerHTML = O;
             } else {
                 gameOverText.innerHTML = `X Won!`;
                 endGame = true;
+                X++
+                wonX.innerHTML = X;
             }
             if (useClass === '.row-1') {
                 const useClass = document.querySelectorAll('.one, .two, .three');
@@ -155,7 +159,7 @@ function checkWinner() {
 }
 
 function AI() {
-
+    
 }
 
 

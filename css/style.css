@@ -115,3 +115,8 @@ button:hover {
 .x{
     opacity: 1;
 }
+
+.input {
+    width: 75px;
+    
+}

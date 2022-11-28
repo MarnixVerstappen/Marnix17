@@ -11,6 +11,13 @@
 
 <body>
     <header><h1><u>Tic Tac Toe</u></h1></header>
+      <div>
+    <label for="example">Name:</label>
+    <input id="example" type="text" name="text" />
+  </div>
+  <div>
+    <input type="submit" value="Send" />
+  </div>
     <div class="wrapper">        
         <div data-index="1" class="one boxes"></div>
         <div data-index="2" class="two boxes"></div>
@@ -24,8 +31,8 @@
         <article class="userName"></article>
         <article class="leaderboard"><u><h4>leaderboard</h4></u>
         <h5>Wins:</h5>
-        <h6 class="scoreboard-X">Player X =</h6>
-        <h6 class="scoreboard-O">Player O =</h6></article>
+        <h6 class="scoreboard-X"><input class="input" type="text"> = <span class="wonX">0</span></h6>
+        <h6 class="scoreboard-O">Computer = <span class="wonO">0</span></h6></article>
         <div class="strike"></div>        
     </div>
 
