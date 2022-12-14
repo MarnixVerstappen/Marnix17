@@ -10,12 +10,10 @@
 </head>
 
 <body>
-    <header><h1><u>Tic Tac Toe</u></h1></header>
-      <div>
-    <label for="example">Name:</label>
-    <input type="text" class="input-area">
-    <button class="submit">Submit</button><br><br>
-    <div class="wrapper">        
+    <header>
+        <h1><u>Tic Tac Toe</u></h1>
+    </header>
+    <div class="wrapper">
         <div data-index="1" class="one boxes"></div>
         <div data-index="2" class="two boxes"></div>
         <div data-index="3" class="three boxes"></div>
@@ -26,17 +24,27 @@
         <div data-index="8" class="eight boxes"></div>
         <div data-index="9" class="nine boxes"></div>
         <article class="userName"></article>
-        <article class="leaderboard"><u><h4>leaderboard</h4></u>
-        <h5>Wins:</h5>
-        <h6 class="scoreboard-X"><span class="player">Player</span> = <span class="wonX">0</span></h6>
-        <h6 class="scoreboard-O">Computer = <span class="wonO">0</span></h6></article>
-        <div class="strike"></div>        
+        <article class="leaderboard"><u>
+                <h4>leaderboard:</h4>
+            </u>
+            <h5>
+                <div>
+                    <label for="example">Name:</label>
+                    <input type="text" class="input-area"><br><br>
+                    <button class="submit">Submit:</button>
+                </div>
+            </h5>
+            <h6 class="scoreboard-X"><span class="player">Player</span> = <span class="wonX">0</span></h6>
+            <h6 class="scoreboard-O">Computer = <span class="wonO">0</span></h6>
+        </article>
+        <div class="strike"></div>
     </div>
 
     <div class="game-over-area" class="hidden">
-    <h2 class="game-over-text">&nbsp;</h2>
-    <button class="play-again">-Play Again-</button>
+        <h2 class="game-over-text">&nbsp;</h2>
+        <button class="play-again">-Play Again-</button>
     </div>
     <script src="js/main.js"></script>
 </body>
+
 </html>

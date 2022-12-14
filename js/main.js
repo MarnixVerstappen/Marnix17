@@ -3,8 +3,6 @@ const scoreboardX = document.querySelector('.scoreboard-X')
 const scoreboardO = document.querySelector('.scoreboard-O')
 const playerX = 'X';
 const playerO = 'O';
-let boardState = Array(boxes.length);
-boardState.fill('');
 const Strike = document.querySelector('.strike');
 const gameOverArea = document.querySelector('.game-over-area');
 const gameOverText = document.querySelector('.game-over-text');
@@ -12,6 +10,7 @@ const wonX = document.querySelector('.wonX');
 const wonO = document.querySelector('.wonO');
 const playAgain = document.querySelector('.play-again');
 const submitBtn = document.querySelector('.submit');
+let boardState = Array(boxes.length); boardState.fill('');
 let inputArea = document.querySelector('.input-area');
 let player = document.querySelector('.player')
 let endGame = false;
@@ -28,7 +27,6 @@ function submitName() {
 }
 
 function reset() {
-    boardState = Array(boxes.length);
     boardState.fill('');
     endGame = false;
     boxes.forEach(boxes => {
@@ -69,6 +67,7 @@ function setHoverText() {
 }
 
 function boxeClick(event) {
+
     if (endGame) {
         return;
     }
@@ -92,15 +91,12 @@ function boxeClick(event) {
     boxes.classList.add('filled');
     if (turn === playerX) {
         boxes.innerText = playerX
-        boardState[boxNumber - 1] = playerX
-        turn = playerO;
-    } else {
-        boxes.innerText = playerO
-        boardState[boxNumber - 1] = playerO
-        turn = playerX;
+        boardState[boxNumber - 1] = playerX;
+        checkWinner();
+        AIDef();
+        AIatc();
     }
-    checkWinner();
-    AI();
+    console.log(boardState)
 }
 
 function checkWinner() {
@@ -111,12 +107,12 @@ function checkWinner() {
             boardState[indexes[0]] === boardState[indexes[1]] &&
             boardState[indexes[1]] === boardState[indexes[2]]) {
             if (turn == 'X') {
-                gameOverText.innerHTML = `O Won!`;
+                gameOverText.innerHTML = `X Won!`;
                 endGame = true;
                 O++;
                 wonO.innerHTML = O;
             } else {
-                gameOverText.innerHTML = `X Won!`;
+                gameOverText.innerHTML = `O Won!`;
                 endGame = true;
                 X++
                 wonX.innerHTML = X;
@@ -166,18 +162,131 @@ function checkWinner() {
     })
 }
 
-function AI() {
-    
+function AIDef() {
+
+    if (boardState[4] !== 'X' && boardState[4] !== 'O') {
+        boardState[4] = 'O';
+        document.querySelector('.five').innerHTML = 'O';
+    }
+    else if (boardState[4] == 'X') {
+        boardState[0] = 'O';
+        document.querySelector('.one').innerHTML = 'O';
+    }
+    //row 1
+    else if (boardState[0] == 'X' && boardState[1] == 'X') {
+        boardState[2] = 'O';
+        document.querySelector('.three').innerHTML = 'O';
+    }
+    else if (boardState[1] == 'X' && boardState[2] == 'X') {
+        boardState[0] = 'O';
+        document.querySelector('.one').innerHTML = 'O';
+    }
+    else if (boardState[0] == 'X' && boardState[2] == 'X') {
+        console.log(123);
+        boardState[1] = 'O';
+        document.querySelector('.two').innerHTML = 'O';
+    //colomn 1
+    }
+    if (boardState[0] == 'X' && boardState[3] == 'X') {
+        boardState[6] = 'O';
+        document.querySelector('.seven').innerHTML = 'O';
+    }
+    else if (boardState[0] == 'X' && boardState[6] == 'X') {
+        boardState[3] = 'O';
+        document.querySelector('.four').innerHTML = 'O';
+    }
+    else if (boardState[6] == 'X' && boardState[3] == 'X') {
+        boardState[0] = 'O';
+        document.querySelector('.one').innerHTML = 'O';
+    }
+    //row 2
+    if (boardState[3] == 'X' && boardState[4] == 'X') {
+        boardState[5] = 'O';
+        document.querySelector('.six').innerHTML = 'O';
+    }
+    else if (boardState[4] == 'X' && boardState[5] == 'X') {
+        boardState[3] = 'O';
+        document.querySelector('.four').innerHTML = 'O';
+    }
+    else if (boardState[5] == 'X' && boardState[3] == 'X') {
+        boardState[4] = 'O';
+        document.querySelector('.five').innerHTML = 'O';
+    }
+    //column 2
+    if (boardState[1] == 'X' && boardState[4] == 'X') {
+        boardState[7] = 'O';
+        document.querySelector('.eight').innerHTML = 'O';
+    }
+    else if (boardState[4] == 'X' && boardState[7] == 'X') {
+        boardState[1] = 'O';
+        document.querySelector('.two').innerHTML = 'O';
+    }
+    else if (boardState[1] == 'X' && boardState[7] == 'X') {
+        boardState[4] = 'O';
+        document.querySelector('.five').innerHTML = 'O';
+    }
+    // row 3
+    if (boardState[6] == 'X' && boardState[7] == 'X') {
+        boardState[8] = 'O';
+        document.querySelector('.nine').innerHTML = 'O';
+    }
+    else if (boardState[6] == 'X' && boardState[8] == 'X') {
+        boardState[7] = 'O';
+        document.querySelector('.eight').innerHTML = 'O';
+    }
+    else if (boardState[7] == 'X' && boardState[8] == 'X') {
+        boardState[6] = 'O';
+        document.querySelector('.one').innerHTML = 'O';
+    }
+    // column 3
+    if (boardState[2] == 'X' && boardState[5] == 'X') {
+        boardState[8] = 'O';
+        document.querySelector('.nine').innerHTML = 'O';
+    }
+    else if (boardState[2] == 'X' && boardState[8] == 'X') {
+        boardState[5] = 'O';
+        document.querySelector('.six').innerHTML = 'O';
+    }
+    else if (boardState[5] == 'X' && boardState[8] == 'X') {
+        boardState[2] = 'O';
+        document.querySelector('.three').innerHTML = 'O';
+    }
+    //diagonal 1
+    if (boardState[0] == 'X' && boardState[4] == 'X') {
+        boardState[8] = 'O';
+        document.querySelector('.nine').innerHTML = 'O';
+    }
+    else if (boardState[4] == 'X' && boardState[8] == 'X') {
+        boardState[0] = 'O';
+        document.querySelector('.one').innerHTML = 'O';
+    }
+    else if (boardState[0] == 'X' && boardState[8] == 'X') {
+        boardState[4] = 'O';
+        document.querySelector('.five').innerHTML = 'O';
+    }
+    //diangonal 2
+    if (boardState[6] == 'X' && boardState[4] == 'X') {
+        boardState[2] = 'O';
+        document.querySelector('.three').innerHTML = 'O';
+    }
+    else if (boardState[2] == 'X' && boardState[6] == 'X') {
+        boardState[4] = 'O';
+        document.querySelector('.five').innerHTML = 'O';
+    }
+    else if (boardState[2] == 'X' && boardState[4] == 'X') {
+        boardState[6] = 'O';
+        document.querySelector('.seven').innerHTML = 'O';
+    }
+
 }
 
-
-let checkWinnerCombination = [
-    { combo: [0, 1, 2], strikeClass: '.row-1' },
-    { combo: [3, 4, 5], strikeClass: '.row-2' },
-    { combo: [6, 7, 8], strikeClass: '.row-3' },
-    { combo: [0, 3, 6], strikeClass: '.colomn-1' },
-    { combo: [1, 4, 7], strikeClass: '.colomn-2' },
-    { combo: [2, 5, 8], strikeClass: '.colomn-3' },
-    { combo: [0, 4, 8], strikeClass: '.diagnal-1' },
-    { combo: [2, 4, 6], strikeClass: '.diagnal-2' },
-];
+    let checkWinnerCombination = [
+        { combo: [0, 1, 2], strikeClass: '.row-1' },
+        { combo: [3, 4, 5], strikeClass: '.row-2' },
+        { combo: [6, 7, 8], strikeClass: '.row-3' },
+        { combo: [0, 3, 6], strikeClass: '.colomn-1' },
+        { combo: [1, 4, 7], strikeClass: '.colomn-2' },
+        { combo: [2, 5, 8], strikeClass: '.colomn-3' },
+        { combo: [0, 4, 8], strikeClass: '.diagnal-1' },
+        { combo: [2, 4, 6], strikeClass: '.diagnal-2' },
+    ];

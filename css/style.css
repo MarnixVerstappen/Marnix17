@@ -116,7 +116,23 @@ h2 {
     opacity: 1;
 }
 
-.input {
+.input-area {
     width: 75px;
 
+}
+
+.submit {
+    background-color: transparent;
+    color: black;
+    border: black 1px solid;
+    border-radius: 5px;
+    font-size: medium;
+}
+
+.submit:hover {
+    background-color: transparent;
+    color: white;
+    border: white 1px solid;
+    border-radius: 5px;
+    font-size: medium;
 }
